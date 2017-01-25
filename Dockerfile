@@ -2,10 +2,25 @@
 FROM z3cka/debianvm:latest
 MAINTAINER Casey Grzecka <c@sey.gr>
 
+ARG c9port=80
+ARG user=c9
+ARG pass=rules
+ARG workspace="/workspace"
+
+ENV c9port $c9port
+ENV user $user
+ENV pass $pass
+ENV workspace $workspace
+
+RUN useradd --create-home --no-log-init --shell /bin/bash $user
+RUN adduser $user sudoRUN echo '$user:$pass' | chpasswd
+USER $user
+WORKDIR /home/$user
+
 RUN apt update && apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
-ENV NVM_DIR=/root/.nvm
-RUN . /root/.nvm/nvm.sh && nvm install v4.6.0 && nvm use stable
+ENV NVM_DIR=$HOME/.nvm
+RUN . $HOME/.nvm/nvm.sh && nvm install v4.6.0 && nvm use stable
 
 # get c9 and checkout temp fix for missing plugin
 RUN git clone https://github.com/c9/core.git /c9 && \
@@ -33,16 +48,6 @@ RUN cd /opt && \
     ln -s /opt/hub-linux-amd64-2.2.9/bin/hub /usr/local/bin/hub
 
 RUN mkdir /workspace
-
-ARG c9port=80
-ARG user=c9
-ARG pass=rules
-ARG workspace="/workspace"
-
-ENV c9port $c9port
-ENV user $user
-ENV pass $pass
-ENV workspace $workspace
 
 EXPOSE 80
 
