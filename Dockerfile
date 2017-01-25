@@ -2,7 +2,7 @@
 FROM deffyc/debianvm:latest
 MAINTAINER jiehou <deffyc@gmail.com>
 
-RUN apt update && apt install -y curl wget vim
+RUN sudo apt update && apt install -y curl wget vim
 
 ARG c9port=80
 ARG workspace=/home/c9
