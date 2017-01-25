@@ -2,7 +2,7 @@
 FROM z3cka/debianvm:latest
 MAINTAINER Casey Grzecka <c@sey.gr>
 
-RUN apt update
+RUN apt update && apt install sudo
 
 ARG c9port=80
 ARG user=c9
