@@ -15,7 +15,8 @@ ENV pass $pass
 ENV workspace $workspace
 
 RUN useradd --create-home --no-log-init --shell /bin/bash $user
-RUN adduser $user sudoRUN echo '$user:$pass' | chpasswd
+RUN adduser $user sudo
+RUN echo '$user:$pass' | chpasswd
 USER $user
 WORKDIR /home/$user
 
