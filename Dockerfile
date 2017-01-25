@@ -2,7 +2,7 @@
 FROM deffyc/debianvm:latest
 MAINTAINER jiehou <deffyc@gmail.com>
 
-RUN sudo $NVM_DIR/nvm.sh && sudo nvm install v4.6.0 && sudo nvm use stable
+RUN . $NVM_DIR/nvm.sh && sudo nvm install v4.6.0 && sudo nvm use stable
 
 # get c9 and checkout temp fix for missing plugin
 RUN sudo git clone https://github.com/c9/core.git /c9 && \
