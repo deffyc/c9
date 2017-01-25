@@ -1,59 +1,44 @@
 # c9
-FROM z3cka/debianvm:latest
-MAINTAINER Casey Grzecka <c@sey.gr>
+FROM deffyc/debianvm:latest
+MAINTAINER jiehou <deffyc@gmail.com>
 
-RUN apt update && apt install -y sudo curl wget vim
+RUN apt update && apt install -y curl wget vim
 
 ARG c9port=80
-ARG user=c9
-ARG pass=rules
-ARG workspace="/workspace"
+ARG workspace=/home/c9
 
 ENV c9port $c9port
-ENV user $user
-ENV pass $pass
 ENV workspace $workspace
 
-RUN useradd --create-home --no-log-init --shell /bin/bash $user
-RUN adduser $user sudo
-RUN echo "$user:$pass" | chpasswd
-USER $user
-WORKDIR /home/$user
 
-#nvm
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash
-
-RUN echo "$pass" | sudo -S apt install -y build-essential gcc git make python2.7
+RUN sudo apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
 ENV NVM_DIR /home/$user/.nvm
+
 RUN . $NVM_DIR/nvm.sh && nvm install v4.6.0 && nvm use stable
 
 # get c9 and checkout temp fix for missing plugin
 RUN sudo git clone https://github.com/c9/core.git /c9 && \
     cd /c9 && \
-    sudo -S scripts/install-sdk.sh
+    sudo scripts/install-sdk.sh
 
 # use bash during build
-RUN sudo -S rm /bin/sh && sudo -S ln -s /bin/bash /bin/sh
+RUN sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh
 # install some extra dev goodies like
 # * apache support for older versions of php in apache via phpbrew
 # * pip for installing CodeIntel in c9
-RUN sudo -S apt install -y apache2-dev apt python-setuptools
-RUN sudo -S easy_install pip
-RUN sudo -S pip install -U pip
-RUN sudo -S pip install -U virtualenv && \
-    sudo -S virtualenv --python=python2 $HOME/.c9/python2 && \
-    sudo -S source $HOME/.c9/python2/bin/activate
-RUN echo "$pass" | sudo -S apt update && apt install -y python-dev
-RUN sudo -S mkdir /tmp/codeintel && sudo -S pip install --download /tmp/codeintel codeintel==0.9.3
+RUN sudo apt install -y apache2-dev apt python-setuptools
+RUN sudo easy_install pip
+RUN sudo pip install -U pip
+RUN sudo pip install -U virtualenv && \
+    sudo virtualenv --python=python2 $HOME/.c9/python2 && \
+    sudo source $HOME/.c9/python2/bin/activate
+RUN sudo apt update && sudo apt install -y python-dev
+RUN sudo mkdir /tmp/codeintel && sudo pip install --download /tmp/codeintel codeintel==0.9.3
 
-# add hub 2.2.9
-RUN cd /opt && \
-    sudo -S wget https://github.com/github/hub/releases/download/v2.2.9/hub-linux-amd64-2.2.9.tgz && \
-    sudo -S tar -zxvf hub-linux-amd64-2.2.9.tgz && \
-    sudo -S ln -s /opt/hub-linux-amd64-2.2.9/bin/hub /usr/local/bin/hub
 
-RUN sudo -S mkdir /workspace
+
+RUN sudo mkdir $workspace
 
 EXPOSE 80
 
