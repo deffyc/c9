@@ -2,18 +2,7 @@
 FROM deffyc/debianvm:latest
 MAINTAINER jiehou <deffyc@gmail.com>
 
-ARG c9port=80
-ARG workspace=/home/c9
-
-ENV c9port $c9port
-ENV workspace $workspace
-
-
-RUN sudo apt update && sudo apt install -y curl wget vim build-essential gcc git make python2.7
-# load nvm & desired node version
-ENV NVM_DIR /home/$user/.nvm
-
-RUN $NVM_DIR/nvm.sh && sudo nvm install v4.6.0 && sudo nvm use stable
+RUN sudo $NVM_DIR/nvm.sh && sudo nvm install v4.6.0 && sudo nvm use stable
 
 # get c9 and checkout temp fix for missing plugin
 RUN sudo git clone https://github.com/c9/core.git /c9 && \
