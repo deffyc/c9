@@ -13,7 +13,7 @@ RUN sudo apt update && sudo apt install -y curl wget vim build-essential gcc git
 # load nvm & desired node version
 ENV NVM_DIR /home/$user/.nvm
 
-RUN . $NVM_DIR/nvm.sh && nvm install v4.6.0 && nvm use stable
+RUN  sudo sh .$NVM_DIR/nvm.sh && sudo nvm install v4.6.0 && sudo nvm use stable
 
 # get c9 and checkout temp fix for missing plugin
 RUN sudo git clone https://github.com/c9/core.git /c9 && \
