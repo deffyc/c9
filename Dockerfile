@@ -20,7 +20,7 @@ RUN echo "$user:$pass" | chpasswd
 USER $user
 WORKDIR /home/$user
 
-RUN sudo -S apt install -y build-essential gcc git make python2.7
+RUN echo "$pass" | sudo -S apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
 ENV NVM_DIR=$HOME/.nvm
 RUN sudo sh $HOME/.nvm/nvm.sh && nvm install v4.6.0 && nvm use stable
