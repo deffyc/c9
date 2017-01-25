@@ -2,7 +2,7 @@
 FROM z3cka/debianvm:latest
 MAINTAINER Casey Grzecka <c@sey.gr>
 
-RUN apt update && apt install sudo
+RUN apt update && apt install -y sudo curl wget vim
 
 ARG c9port=80
 ARG user=c9
@@ -20,7 +20,10 @@ RUN echo "$user:$pass" | chpasswd
 USER $user
 WORKDIR /home/$user
 
-RUN echo "$pass" | sudo -S apt install -y build-essential gcc git make python2.7
+#nvm
+RUN echo "$pass" | sudo -S curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash
+
+RUN sudo apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
 ENV NVM_DIR /home/$user/.nvm
 RUN . $NVM_DIR/nvm.sh && nvm install v4.6.0 && nvm use stable
