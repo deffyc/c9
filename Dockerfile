@@ -2,6 +2,8 @@
 FROM z3cka/debianvm:latest
 MAINTAINER Casey Grzecka <c@sey.gr>
 
+RUN apt update
+
 ARG c9port=80
 ARG user=c9
 ARG pass=rules
@@ -17,7 +19,7 @@ RUN adduser $user sudoRUN echo '$user:$pass' | chpasswd
 USER $user
 WORKDIR /home/$user
 
-RUN sudo apt update && apt install -y build-essential gcc git make python2.7
+RUN sudo apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
 ENV NVM_DIR=$HOME/.nvm
 RUN $HOME/.nvm/nvm.sh && nvm install v4.6.0 && nvm use stable
