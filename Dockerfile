@@ -44,7 +44,7 @@ RUN sudo -S pip install -U pip
 RUN sudo -S pip install -U virtualenv && \
     sudo -S virtualenv --python=python2 $HOME/.c9/python2 && \
     sudo -S source $HOME/.c9/python2/bin/activate
-RUN sudo -S apt update && apt install -y python-dev
+RUN echo "$pass" | sudo -S apt update && apt install -y python-dev
 RUN sudo -S mkdir /tmp/codeintel && sudo -S pip install --download /tmp/codeintel codeintel==0.9.3
 
 # add hub 2.2.9
