@@ -19,7 +19,7 @@ RUN sudo easy_install pip
 RUN sudo pip install -U pip
 RUN sudo pip install -U virtualenv && \
     sudo virtualenv --python=python2 $HOME/.c9/python2 && \
-    sudo source $HOME/.c9/python2/bin/activate
+    source $HOME/.c9/python2/bin/activate
 RUN sudo apt update && sudo apt install -y python-dev
 RUN sudo mkdir /tmp/codeintel && sudo pip install --download /tmp/codeintel codeintel==0.9.3
 
