@@ -6,7 +6,7 @@ c9 in a docker container running node 4.6.0 via nvm on debian
 * Find external port on host via `docker ps`:   
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                            NAMES
-942d87429a7d        c942a246bd79        "/bin/sh -c '/root/.n"   58 seconds ago      Up 57 seconds       0.0.0.0:32770->80/tcp                             elated_lamport
+942d87429a7d        c942a246bd79        "/bin/sh -c '/home/$user/.n"   58 seconds ago      Up 57 seconds       0.0.0.0:32770->80/tcp                             elated_lamport
 ```
 * Visit `http://localhost:32770`
     - User Name: `c9`
