@@ -22,7 +22,7 @@ WORKDIR /home/$user
 
 RUN echo "$pass" | sudo -S apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
-ENV NVM_DIR=$HOME/.nvm
+ENV NVM_DIR /home/$user/.nvm
 RUN . $NVM_DIR/nvm.sh && nvm install v4.6.0 && nvm use stable
 
 # get c9 and checkout temp fix for missing plugin
