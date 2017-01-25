@@ -21,7 +21,7 @@ USER $user
 WORKDIR /home/$user
 
 #nvm
-RUN echo "$pass" | sudo -S curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash
 
 RUN echo "$pass" | sudo -S apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
