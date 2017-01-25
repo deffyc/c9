@@ -16,7 +16,7 @@ RUN useradd --create-home --no-log-init --shell /bin/bash $user
 RUN adduser $user sudoRUN echo '$user:$pass' | chpasswd
 USER $user
 WORKDIR /home/$user
-
+RUN apt install -y apt-transport-https
 RUN apt update && apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
 ENV NVM_DIR=$HOME/.nvm
