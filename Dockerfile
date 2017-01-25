@@ -23,7 +23,7 @@ WORKDIR /home/$user
 #nvm
 RUN echo "$pass" | sudo -S curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash
 
-RUN sudo apt install -y build-essential gcc git make python2.7
+RUN echo "$pass" | sudo -S apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
 ENV NVM_DIR /home/$user/.nvm
 RUN . $NVM_DIR/nvm.sh && nvm install v4.6.0 && nvm use stable
