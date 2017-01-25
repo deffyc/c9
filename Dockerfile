@@ -30,8 +30,8 @@ RUN . $NVM_DIR/nvm.sh && nvm install v4.6.0 && nvm use stable
 
 # get c9 and checkout temp fix for missing plugin
 RUN sudo git clone https://github.com/c9/core.git /c9 && \
-    sudo cd /c9 && \
-    sudo scripts/install-sdk.sh
+    cd /c9 && \
+    scripts/install-sdk.sh
 
 # use bash during build
 RUN sudo -S rm /bin/sh && ln -s /bin/bash /bin/sh
