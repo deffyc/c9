@@ -7,7 +7,7 @@ ARG workspace=/home/c9/workspace
 ENV c9port $c9port
 ENV workspace $workspace
 
-
+RUN sudo apt update && sudo apt install -y git
 # load nvm & desired node version
 ENV NVM_DIR /home/$user/.nvm
 
