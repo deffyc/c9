@@ -2,7 +2,7 @@
 c9 in a docker container running node 4.6.0 via nvm on debian
 
 ## Usage
-* `docker run -d -p :80 z3cka/c9`  
+* `docker run -d -p :80 deffyc/c9`  
 * Find external port on host via `docker ps`:   
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                            NAMES
@@ -15,7 +15,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ## Features
 ### Custom C9 Port
 * at **runtime** like:
-  `docker run -d --env c9port=8181 -p :8181 z3cka/c9`
+  `docker run -d --env c9port=8181 -p :8181 deffyc/c9`
 * at **buildtime** like:
   #### example
   * build it: `docker build --build-arg c9port=8282 .`  
@@ -24,18 +24,19 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 ### Custom Authentication
 * at **runtime** like:  
-  `docker run -d -e user=foo -e pass=bar -p :80 z3cka/c9`
+  `docker run -d -e user=foo -e pass=bar -p :80 deffyc/c9`
 * at **buildtime** like:
   `docker build --build-arg user=foo --build-arg pass=bar .`
 
 ### Custom Workspace
 * at **runtime** like:  
-  `docker run -d -e workspace="/baz" -p :80 z3cka/c9`
+  `docker run -d -e workspace="/baz" -p :80 deffyc/c9`
 * at **buildtime** like:
   `docker build --build-arg workspace="/baz" .`
-
+## Change username && password
+the system default username/password is c9/rules,it's created in docker,so you need to change it at "/etc/passwd" and "/etc/shadow"
 
 ## Docker Hub
-https://hub.docker.com/r/z3cka/c9
+https://hub.docker.com/r/deffyc/c9
 ### based on
-https://hub.docker.com/r/z3cka/debianvm
+https://hub.docker.com/r/_/debian/
