@@ -7,7 +7,7 @@ ARG workspace=/home/c9/workspace
 ENV c9port $c9port
 ENV workspace $workspace
 
-RUN sudo apt update && sudo apt install -y git
+RUN sudo apt update && sudo apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
 ENV NVM_DIR /home/$user/.nvm
 
