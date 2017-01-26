@@ -2,7 +2,7 @@
 FROM deffyc/debianvm:latest
 MAINTAINER houjie <deffyc@gmail.com>
 
-ARG c9port=80
+ARG c9port=8080
 ARG workspace=/home/c9/workspace
 ENV c9port $c9port
 ENV workspace $workspace
@@ -35,10 +35,10 @@ RUN sudo mkdir /tmp/codeintel && sudo pip install --download /tmp/codeintel code
 
 RUN sudo mkdir $workspace
 
-EXPOSE 80
-
+EXPOSE 8080
+EXPOSE 3000
 RUN curl https://install.meteor.com/ | sh
 	
 RUN meteor npm config set registry http://registry.npm.taobao.org/
 
-CMD  sudo $HOME/.nvm/versions/node/v4.6.0/bin/node $HOME/c9sdk/server.js -p $c9port -a $user:$pass --listen 0.0.0.0 -w $workspace
+CMD  $HOME/.nvm/versions/node/v4.6.0/bin/node $HOME/c9sdk/server.js -p $c9port -a $user:$pass --listen 0.0.0.0 -w $workspace
