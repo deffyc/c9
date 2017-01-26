@@ -2,7 +2,7 @@
 FROM deffyc/debianvm:latest
 MAINTAINER houjie <deffyc@gmail.com>
 
-ARG c9port=80
+ARG c9port=8080
 ARG workspace=/home/c9/workspace
 ENV c9port $c9port
 ENV workspace $workspace
@@ -20,7 +20,7 @@ RUN git clone https://github.com/c9/core.git $HOME/c9sdk && \
 
 RUN sudo mkdir $workspace
 
-EXPOSE 80
+EXPOSE 8080
 EXPOSE 3000
-
+EXPOSE 80
 CMD  sudo $HOME/.nvm/versions/node/v4.6.0/bin/node $HOME/c9sdk/server.js -p $c9port -a $user:$pass --listen 0.0.0.0 -w $workspace
