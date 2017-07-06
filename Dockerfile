@@ -8,7 +8,7 @@ ENV c9port $c9port
 ENV workspace $workspace
 
 
-RUN sudo apt update && sudo apt install -y build-essential gcc git make python2.7
+RUN sudo apt update && sudo apt install -y build-essential gcc git make python2.7 zip
 # load nvm & desired node version
 ENV NVM_DIR /home/$user/.nvm
 
