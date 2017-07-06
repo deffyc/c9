@@ -1,5 +1,5 @@
 # c9
-FROM z3cka/debianvm:latest
+FROM debian:jessie
 MAINTAINER houjie <deffyc@gmail.com>
 
 ARG c9port=8080
@@ -11,6 +11,10 @@ ENV c9port $c9port
 ENV workspace $workspace
 ENV user $user
 ENV pass $pass
+
+RUN apt update && apt install -y curl wget vim
+
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 
 RUN apt update && apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
