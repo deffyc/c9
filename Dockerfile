@@ -1,5 +1,5 @@
-# Cloud9
-FROM deffyc/debianvm:latest
+# c9
+FROM z3cka/debianvm:latest
 MAINTAINER houjie <deffyc@gmail.com>
 
 ARG c9port=8080
