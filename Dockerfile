@@ -20,13 +20,13 @@ RUN apt update && apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
 ENV NVM_DIR=/root/.nvm
 
-RUN . $NVM_DIR/nvm.sh && nvm install v4.6.0 && nvm use stable
+RUN . $NVM_DIR/nvm.sh && nvm install v4.4.6 && nvm use 4
 
 # get c9 and checkout temp fix for missing plugin
 RUN git clone https://github.com/c9/core.git /c9 && \
     cd /c9 && \
     scripts/install-sdk.sh
-run npm install -g cnpm --registry=https://registry.npm.taobao.org
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 RUN mkdir $workspace
 
 EXPOSE 8080
