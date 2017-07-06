@@ -4,8 +4,13 @@ MAINTAINER houjie <deffyc@gmail.com>
 
 ARG c9port=8080
 ARG workspace=/workspace
+ARG user=c9
+ARG pass=rules
+
 ENV c9port $c9port
 ENV workspace $workspace
+ENV user $user
+ENV pass $pass
 
 RUN apt update && apt install -y build-essential gcc git make python2.7
 # load nvm & desired node version
