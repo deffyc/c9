@@ -26,10 +26,10 @@ RUN . $NVM_DIR/nvm.sh && nvm install v4.6.0 && nvm use stable
 RUN git clone https://github.com/c9/core.git /c9 && \
     cd /c9 && \
     scripts/install-sdk.sh
-
+run npm install -g cnpm --registry=https://registry.npm.taobao.org
 RUN mkdir $workspace
 
 EXPOSE 8080
 EXPOSE 3000
 EXPOSE 80
-CMD /root/.nvm/versions/node/v4.6.0/bin/node /c9/server.js -p $c9port -a $user:$pass --listen 0.0.0.0 -w $workspace
+CMD node /c9/server.js -p $c9port -a $user:$pass --listen 0.0.0.0 -w $workspace
