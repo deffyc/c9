@@ -3,7 +3,7 @@ FROM deffyc/debianvm:latest
 MAINTAINER houjie <deffyc@gmail.com>
 
 ARG c9port=8080
-ARG workspace=/home/c9/workspace
+ARG workspace=/root/c9/workspace
 ENV c9port $c9port
 ENV workspace $workspace
 
